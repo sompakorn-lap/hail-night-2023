@@ -8,10 +8,6 @@ app.use(express.static('dist'))
 
 const data = require('./assets/data.json')
 
-app.get('/api/data/:number', (req, res) => {
-    res.json(data.filter(item => (item.number == req.params.number))[0])
-})
-
 app.get('/api/data', (req, res) => {
     res.json(data)
 })
@@ -22,6 +18,10 @@ app.get('/api/logo', (req, res) => {
 
 app.get('/api/img/:name', (req, res) => {
     res.sendFile(`${__dirname}/assets/${req.params.name}.jpg`)
+})
+
+app.get('/api/vdo/:name', (req, res) => {
+    res.sendFile(`${__dirname}/assets/${req.params.name}.mp4`)
 })
 
 app.get('*', (req, res) => {
